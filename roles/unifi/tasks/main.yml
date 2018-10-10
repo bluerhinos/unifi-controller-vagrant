@@ -1,0 +1,16 @@
+- name: Unifi - Add repo key
+  apt_key:
+    id: 06E85760C0A52C50
+    url: https://dl.ubnt.com/unifi/unifi-repo.gpg
+    keyring: /etc/apt/trusted.gpg.d/unifi-repo.gpg
+
+- name: Unifi - Add repo
+  apt_repository:
+    repo: deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti
+    state: present
+    update_cache: yes
+
+- name: Unifi - Install unifi
+  apt:
+    name: unifi
+    cache_valid_time: 3600

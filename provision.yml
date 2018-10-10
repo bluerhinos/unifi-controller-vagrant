@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - setup
+    - unifi
+  vars:
+    - host_name: unifi
+
+
+
+
+
+

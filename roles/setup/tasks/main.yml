@@ -1,0 +1,30 @@
+- name: Setup - update apt
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Setup - upgrade apt
+  apt:
+    cache_valid_time: 3600
+    upgrade: yes
+
+- name: "Setup - ansible requirements - {{ item }}"
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+    cache_valid_time: 3600
+  with_items:
+    - aptitude
+    - python-mysqldb
+    - python-pycurl
+    - debconf-utils
+
+- name: Setup - change hostname
+  hostname:
+    name: "{{ host_name }}"
+
+- name: Setup - add new hostname in /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '^127\.0\.0\.1'
+    line: "127.0.0.1 localhost {{ host_name }}"
