@@ -8,17 +8,16 @@
     cache_valid_time: 3600
     upgrade: yes
 
-- name: "Setup - ansible requirements - {{ item }}"
+- name: Setup - ansible requirements
   apt:
-    pkg: "{{ item }}"
+    name:
+      - aptitude
+      - python-mysqldb
+      - python-pycurl
+      - debconf-utils
+      - apt-transport-https
     state: latest
     cache_valid_time: 3600
-  with_items:
-    - aptitude
-    - python-mysqldb
-    - python-pycurl
-    - debconf-utils
-    - apt-transport-https
 
 - name: Setup - change hostname
   hostname:
