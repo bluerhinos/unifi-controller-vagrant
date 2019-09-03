@@ -18,6 +18,7 @@
     - python-mysqldb
     - python-pycurl
     - debconf-utils
+    - apt-transport-https
 
 - name: Setup - change hostname
   hostname:
